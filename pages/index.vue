@@ -1,5 +1,5 @@
 <template>
-	<div class="py-8 grid grid-cols-4 gap-8">
+	<div class="py-8 grid grid-cols-4 gap-[74px]">
 		<CountryCard
 			v-for="item in countries"
 			:key="item.name.official"

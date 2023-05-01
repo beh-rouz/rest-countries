@@ -1,10 +1,10 @@
 <template>
-	<header class="py-4 bg-white shadow">
+	<header class="py-6 bg-white dark:bg-neutral-800 shadow-md">
 		<div class="container mx-auto flex items-center">
-			<h1 class="font-extrabold text-xl">Where in the world?</h1>
+			<h1 class="font-extrabold text-2xl">Where in the world?</h1>
 			<div class="flex-auto"></div>
 			<button
-				class="appearance-none flex px-3 py-2 rounded hover:bg-gray-200"
+				class="appearance-none flex px-3 py-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-700"
 				@click="toggleColorMode()"
 			>
 				<svg
