@@ -22,10 +22,20 @@ export interface Name {
 	official: string
 	nativeName: Record<string, NativeName>
 }
+
+export interface Currency {
+	name: string
+	symbol: string
+}
+
 export interface Country {
 	flags: Flags
 	name: Name
 	capital: string[]
 	region: Region
+	subregion: string
+	tld: string[]
+	currencies: Record<string, Currency>
+	languages: Record<string, string>
 	population: number
 }
