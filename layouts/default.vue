@@ -1,8 +1,8 @@
 <template>
-	<app-header />
+  <app-header />
 
-	<!-- page content -->
-	<div class="container mx-auto py-16">
-		<slot />
-	</div>
+  <!-- page content -->
+  <div class="container mx-auto py-16">
+    <slot />
+  </div>
 </template>

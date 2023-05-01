@@ -1,5 +1,5 @@
 {
-	"prettier.tabWidth": 2,
-	"prettier.useTabs": true,
-	"typescript.tsdk": "node_modules/typescript/lib"
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
 }

@@ -1,35 +1,35 @@
 <template>
-	<NuxtLink
-		class="block bg-white dark:bg-neutral-800 shadow-md rounded overflow-hidden"
-		:to="'country/' + country.name.common"
-	>
-		<img
-			class="w-full aspect-[16/10] object-cover"
-			:src="country.flags.svg"
-			:alt="country.flags.alt"
-		/>
-		<div class="p-6 text-sm space-y-1">
-			<div class="pb-3 text-base font-semibold">{{ country.name.common }}</div>
-			<div>
-				Population:
-				<span class="text-gray-500 dark:text-neutral-400">
-					{{ formatNumber(country.population) }}
-				</span>
-			</div>
-			<div>
-				Region:
-				<span class="text-gray-500 dark:text-neutral-400">
-					{{ country.region }}
-				</span>
-			</div>
-			<div>
-				Capital:
-				<span class="text-gray-500 dark:text-neutral-400">{{
-					country.capital?.length > 0 ? country.capital.join(', ') : 'N/A'
-				}}</span>
-			</div>
-		</div>
-	</NuxtLink>
+  <NuxtLink
+    class="block bg-white dark:bg-neutral-800 shadow-md rounded overflow-hidden"
+    :to="'country/' + country.name.common"
+  >
+    <img
+      class="w-full aspect-[16/10] object-cover"
+      :src="country.flags.svg"
+      :alt="country.flags.alt"
+    />
+    <div class="p-6 text-sm space-y-1">
+      <div class="pb-3 text-base font-semibold">{{ country.name.common }}</div>
+      <div>
+        Population:
+        <span class="text-gray-500 dark:text-neutral-400">
+          {{ formatNumber(country.population) }}
+        </span>
+      </div>
+      <div>
+        Region:
+        <span class="text-gray-500 dark:text-neutral-400">
+          {{ country.region }}
+        </span>
+      </div>
+      <div>
+        Capital:
+        <span class="text-gray-500 dark:text-neutral-400">{{
+          country.capital?.length > 0 ? country.capital.join(', ') : 'N/A'
+        }}</span>
+      </div>
+    </div>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
