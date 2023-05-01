@@ -1,7 +1,7 @@
 <template>
-	<div class="bg-white shadow-md rounded text-sm overflow-hidden">
+	<div class="bg-white shadow-md rounded overflow-hidden">
 		<img
-			class="w-full aspect-[16/9] object-cover"
+			class="w-full aspect-[16/10] object-cover"
 			:src="country.flags.svg"
 			:alt="country.flags.alt"
 		/>
