@@ -4,7 +4,7 @@ export enum Region {
 	Antarctic = 'Antarctic',
 	Asia = 'Asia',
 	Europe = 'Europe',
-	Oceania = 'Oceania',
+	Oceania = 'Oceania'
 }
 export interface Flags {
 	png: string

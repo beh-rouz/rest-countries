@@ -42,7 +42,7 @@
 					</div>
 					<div>
 						<span class="font-semibold text-gray-800">Population: </span>
-						<span>{{ formatPopulation }}</span>
+						<span>{{ formatNumber(country.population) }}</span>
 					</div>
 					<div>
 						<span class="font-semibold text-gray-800">Region: </span>
@@ -95,6 +95,7 @@
 
 <script lang="ts" setup>
 import { Country } from '@/interfaces/country'
+import { formatNumber } from '@/utils/format-number'
 
 const { name } = useRoute().params
 
@@ -117,10 +118,6 @@ const { data: searchResult } = await useFetch<Country[]>(
 )
 
 const country = searchResult.value ? searchResult.value[0] : null
-
-const formatPopulation = computed(() =>
-	new Intl.NumberFormat().format(country?.population || 0)
-)
 
 let borderCountries: Ref<Pick<Country, 'name'>[] | null>
 if (country && country.borders?.length > 0) {

@@ -12,7 +12,9 @@
 			<div class="pb-4 font-semibold">{{ country.name.common }}</div>
 			<div>
 				Population:
-				<span class="text-gray-500">{{ country.population }}</span>
+				<span class="text-gray-500">{{
+					formatNumber(country.population)
+				}}</span>
 			</div>
 			<div>
 				Region:
@@ -30,6 +32,7 @@
 
 <script lang="ts" setup>
 import { Country } from '@/interfaces/country'
+import { formatNumber } from '@/utils/format-number'
 
 const { country } = defineProps<{ country: Country }>()
 </script>
