@@ -38,4 +38,5 @@ export interface Country {
 	currencies: Record<string, Currency>
 	languages: Record<string, string>
 	population: number
+	borders: string[]
 }

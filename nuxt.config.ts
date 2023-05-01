@@ -8,18 +8,18 @@ export default defineNuxtConfig({
 			link: [
 				{
 					rel: 'preconnect',
-					href: 'https://fonts.googleapis.com',
+					href: 'https://fonts.googleapis.com'
 				},
 				{
 					rel: 'preconnect',
 					href: 'https://fonts.gstatic.com',
-					crossorigin: '',
+					crossorigin: ''
 				},
 				{
 					rel: 'stylesheet',
-					href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap',
-				},
-			],
-		},
-	},
+					href: 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap'
+				}
+			]
+		}
+	}
 })
