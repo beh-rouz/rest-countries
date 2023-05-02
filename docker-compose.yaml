@@ -5,9 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - NUXT_HOST=0.0.0.0
+      - NUXT_PORT=3000
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-    command: pnpm start
+    command: dumb-init node /.output/server/index.mjs
     
