@@ -2,6 +2,7 @@
   <div class="mb-6 flex">
     <div class="relative w-1/3">
       <input
+        v-model="searchQuery"
         type="text"
         placeholder="Search for a country..."
         class="py-3 pl-12 rounded border-none dark:bg-neutral-800 w-full shadow-md focus:ring-2 focus:ring-blue-800"
@@ -56,7 +57,7 @@
   </div>
   <div class="py-8 grid grid-cols-4 gap-[74px]">
     <CountryCard
-      v-for="item in countries"
+      v-for="item in filteredCountries"
       :key="item.name.official"
       :country="item"
     />
@@ -66,9 +67,17 @@
 <script lang="ts" setup>
 import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
+import { matchSorter } from 'match-sorter'
 import { Country } from '@/interfaces/country'
 
+const searchQuery = ref('')
 const menuItems = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+
+const filteredCountries = computed(() => {
+  return matchSorter(countries.value!, searchQuery.value, {
+    keys: ['name.common']
+  })
+})
 
 const { data: countries } = await useFetch<Country[]>(
   'https://restcountries.com/v3.1/all',

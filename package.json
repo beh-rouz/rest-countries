@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.13",
-    "@heroicons/vue": "^2.0.17"
+    "@heroicons/vue": "^2.0.17",
+    "match-sorter": "^6.3.1"
   }
 }
