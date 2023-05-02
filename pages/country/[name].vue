@@ -2,7 +2,7 @@
   <div class="pb-16">
     <NuxtLink
       to="/"
-      class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded w-28 text-center flex items-center hover:bg-white dark:hover:bg-neutral-800"
+      class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded w-28 text-center flex items-center hover:bg-dark-gray dark:hover:bg-dark-blue-700"
     >
       <ArrowLongLeftIcon class="w-6 h-6 mr-2" />
       Back
@@ -18,12 +18,10 @@
     </div>
     <div class="flex-auto p-8">
       <h1 class="text-3xl font-extrabold mb-6">{{ country.name.common }}</h1>
-      <div class="flex text-gray-500 dark:text-gray-400">
+      <div class="flex">
         <div class="space-y-2 pr-4">
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">
-              Native Name:
-            </span>
+            <span class="font-semibold"> Native Name: </span>
             <span
               v-for="(value, key, index) in country.name.nativeName"
               :key="key"
@@ -37,27 +35,19 @@
             </span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">
-              Population:
-            </span>
+            <span class="font-semibold"> Population: </span>
             <span>{{ formatNumber(country.population) }}</span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">
-              Region:
-            </span>
+            <span class="font-semibold"> Region: </span>
             <span>{{ country.region }}</span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">
-              Sub Region:
-            </span>
+            <span class="font-semibold"> Sub Region: </span>
             <span>{{ country.subregion }}</span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">
-              Capitial:
-            </span>
+            <span class="font-semibold"> Capitial: </span>
             <span>{{
               country.capital ? country.capital.join(', ') : 'N/A'
             }}</span>
@@ -87,16 +77,12 @@
         </div>
       </div>
       <div class="flex flex-wrap gap-3 items-center mt-8">
-        <span
-          class="font-semibold text-gray-800 dark:text-gray-100 flex-shrink-0"
-        >
-          Border Countries:
-        </span>
+        <span class="font-semibold flex-shrink-0"> Border Countries: </span>
         <NuxtLink
           v-for="item in borderCountries"
           :key="item.name.common"
           :to="item.name.common"
-          class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded min-w-[6rem] text-center text-sm text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-neutral-800"
+          class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded min-w-[6rem] text-center text-sm text-gray-600 dark:text-gray-300 hover:bg-dark-gray dark:hover:bg-dark-blue-700"
         >
           {{ item.name.common }}
         </NuxtLink>
