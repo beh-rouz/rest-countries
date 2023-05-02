@@ -46,7 +46,7 @@
                     : 'text-neutral-700 dark:text-white',
                   'flex px-4 py-2 text-sm items-center'
                 ]"
-                @click="selectedRegion = item"
+                @click="selectedRegion = selectedRegion === item ? '' : item"
               >
                 {{ item }}
                 <CheckIcon
