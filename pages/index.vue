@@ -79,9 +79,23 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { matchSorter } from 'match-sorter'
 import { Country } from '@/interfaces/country'
 
-const searchQuery = useDebouncedRef('', 300)
-const selectedRegion = ref('')
 const menuItems = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+
+const route = useRoute()
+const router = useRouter()
+const selectedRegion = ref(route.query.region ? route.query.region : '')
+const searchQuery = useDebouncedRef(
+  (route.query.search ? route.query.search : '') as string,
+  300
+)
+
+watch([searchQuery, selectedRegion], (currentValues) => {
+  const [search, region] = currentValues
+  router.push({
+    path: '/',
+    query: { search, region }
+  })
+})
 
 const filteredCountries = computed(() => {
   if (searchQuery.value)
