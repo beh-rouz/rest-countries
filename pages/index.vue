@@ -37,7 +37,11 @@
           class="absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white dark:bg-neutral-800 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="py-1">
-            <MenuItem v-for="item in menuItems" v-slot="{ active }" :key="item">
+            <MenuItem
+              v-for="region in regions"
+              v-slot="{ active }"
+              :key="region"
+            >
               <a
                 href="#"
                 :class="[
@@ -46,11 +50,11 @@
                     : 'text-neutral-700 dark:text-white',
                   'flex px-4 py-2 text-sm items-center'
                 ]"
-                @click="selectedRegion = selectedRegion === item ? '' : item"
+                @click="selectedRegion = region"
               >
-                {{ item }}
+                {{ region }}
                 <CheckIcon
-                  v-if="item === selectedRegion"
+                  v-if="region === selectedRegion"
                   class="w-4 h-4 ml-auto"
                 />
               </a>
@@ -60,12 +64,20 @@
       </transition>
     </Menu>
   </div>
-  <div class="py-8 grid grid-cols-4 gap-[74px]">
+  <div
+    v-if="filteredCountries?.length > 0"
+    class="py-8 grid grid-cols-4 gap-[74px]"
+  >
     <CountryCard
       v-for="item in filteredCountries"
       :key="item.name.official"
       :country="item"
     />
+  </div>
+  <div v-if="filteredCountries?.length == 0" class="py-8 flex items-center">
+    <ExclamationTriangleIcon class="w-7 h-7 text-gray-500 mr-2" />
+    No country founded given your search query "{{ searchQuery }}" and region
+    "{{ selectedRegion }}". Try something else.
   </div>
 </template>
 
@@ -75,15 +87,17 @@ import {
   ChevronDownIcon,
   CheckIcon
 } from '@heroicons/vue/20/solid'
+import { ExclamationTriangleIcon } from '@heroicons/vue/24/outline'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { matchSorter } from 'match-sorter'
 import { Country } from '@/interfaces/country'
 
-const menuItems = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+const regions = ['All', 'Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
 const route = useRoute()
 const router = useRouter()
-const selectedRegion = ref(route.query.region ? route.query.region : '')
+
+const selectedRegion = ref(route.query.region ? route.query.region : regions[0])
 const searchQuery = useDebouncedRef(
   (route.query.search ? route.query.search : '') as string,
   300
@@ -98,15 +112,17 @@ watch([searchQuery, selectedRegion], (currentValues) => {
 })
 
 const filteredCountries = computed(() => {
+  const countriesInRegion =
+    selectedRegion.value && selectedRegion.value !== 'All'
+      ? countries.value!.filter(
+          (country) => country.region === selectedRegion.value
+        )
+      : countries.value
+
   if (searchQuery.value)
-    return matchSorter(countries.value!, searchQuery.value, {
+    return matchSorter(countriesInRegion!, searchQuery.value, {
       keys: ['name.common']
     })
-
-  if (selectedRegion.value)
-    return countries.value!.filter(
-      (country) => country.region === selectedRegion.value
-    )
 
   return countries.value
 })
