@@ -1,22 +1,24 @@
 <template>
-  <div class="mb-6 flex">
-    <div class="relative w-1/3">
+  <div class="mb-6 flex flex-col sm:flex-row">
+    <div class="relative sm:w-1/3 mb-8">
       <input
         v-model="searchQuery"
         type="text"
         placeholder="Search for a country..."
-        class="py-3 pl-12 rounded border-none dark:bg-dark-blue-700 w-full shadow-md"
+        class="py-3.5 pl-12 rounded border-none placeholder:text-dark-gray text-sm dark:bg-dark-blue-700 w-full shadow-md focus:ring-2 focus:ring-dark-gray"
       />
-      <MagnifyingGlassIcon class="w-6 h-6 absolute left-3 top-3" />
+      <MagnifyingGlassIcon
+        class="w-6 h-6 absolute left-3 top-3 text-dark-gray"
+      />
     </div>
     <div class="flex-auto"></div>
     <Menu v-model="selectedRegion" as="div" class="relative">
       <div>
         <MenuButton
-          class="inline-flex w-44 justify-center gap-x-1.5 rounded-md bg-white dark:text-white dark:bg-dark-blue-700 px-3 py-4 text-sm shadow-md"
+          class="inline-flex w-48 items-center gap-x-1.5 rounded-md bg-white dark:text-white dark:bg-dark-blue-700 px-6 py-4 text-xs sm:text-sm shadow-md"
         >
           Filter by region
-          <ChevronDownIcon class="-mr-2 ml-4 h-5 w-5" />
+          <ChevronDownIcon class="ml-auto -mr-2 w-4 h-4 sm:h-5 sm:w-5" />
         </MenuButton>
       </div>
 
@@ -29,7 +31,7 @@
         leave-to-class="transform opacity-0 scale-95"
       >
         <MenuItems
-          class="absolute right-0 z-10 mt-2 w-44 origin-top-right rounded-md bg-white dark:bg-dark-blue-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          class="absolute left-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white dark:bg-dark-blue-700 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="py-1">
             <MenuItem
@@ -43,14 +45,14 @@
                   active
                     ? 'bg-light-gray dark:bg-dark-blue-800'
                     : 'dark:text-white',
-                  'flex px-4 py-2 text-sm items-center'
+                  'flex px-6 py-2 text-xs sm:text-sm items-center'
                 ]"
                 @click="selectedRegion = region"
               >
                 {{ region }}
                 <CheckIcon
                   v-if="region === selectedRegion"
-                  class="w-4 h-4 ml-auto"
+                  class="w-3 h-3 sm:w-4 sm:h-4 ml-auto -mr-2"
                 />
               </a>
             </MenuItem>
@@ -61,7 +63,7 @@
   </div>
   <div
     v-if="filteredCountries?.length > 0"
-    class="py-8 grid grid-cols-4 gap-[74px]"
+    class="px-9 py-6 sm:px-0 sm:py-8 grid grid-cols-1 sm:grid-cols-4 gap-[74px]"
   >
     <CountryCard
       v-for="item in filteredCountries"
@@ -69,8 +71,13 @@
       :country="item"
     />
   </div>
-  <div v-if="filteredCountries?.length == 0" class="py-8 flex items-center">
-    <ExclamationTriangleIcon class="w-7 h-7 text-gray-500 mr-2" />
+  <div
+    v-if="filteredCountries?.length == 0"
+    class="py-8 flex flex-col sm:flex-row items-center sm:text-left text-center"
+  >
+    <ExclamationTriangleIcon
+      class="w-7 h-7 text-gray-500 mr-2 flex-shrink-0 mb-2 sm:mb-0"
+    />
     No country founded given your search query "{{ searchQuery }}" and region
     "{{ selectedRegion }}". Try something else.
   </div>
