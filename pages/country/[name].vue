@@ -65,17 +65,23 @@
         </div>
         <div class="space-y-2 ml-auto">
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">Top Level Domain: </span>
+            <span class="font-semibold text-gray-800 dark:text-gray-100"
+              >Top Level Domain:
+            </span>
             <span>{{ country.tld.join(', ') }}</span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">Currencies: </span>
+            <span class="font-semibold text-gray-800 dark:text-gray-100"
+              >Currencies:
+            </span>
             <span v-for="(value, key) in country.currencies" :key="key">
               {{ value.name }} ({{ value.symbol }})
             </span>
           </div>
           <div>
-            <span class="font-semibold text-gray-800 dark:text-gray-100">Languages: </span>
+            <span class="font-semibold text-gray-800 dark:text-gray-100"
+              >Languages:
+            </span>
             <span>{{ Object.values(country.languages).join(', ') }}</span>
           </div>
         </div>
@@ -90,11 +96,13 @@
           v-for="item in borderCountries"
           :key="item.name.common"
           :to="item.name.common"
-          class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded w-28 text-center text-sm text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-neutral-800"
+          class="shadow-[0_0_4px_rgba(0,0,0,0.3)] dark:shadow-[0_0_4px_rgba(255,255,255,0.3)] px-4 py-1.5 rounded min-w-[6rem] text-center text-sm text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-neutral-800"
         >
           {{ item.name.common }}
         </NuxtLink>
-        <span v-if="!borderCountries" class="text-gray-500 dark:text-gray-400">N/A</span>
+        <span v-if="!borderCountries" class="text-gray-500 dark:text-gray-400"
+          >N/A</span
+        >
       </div>
     </div>
   </div>

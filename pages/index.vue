@@ -12,7 +12,7 @@
       />
     </div>
     <div class="flex-auto"></div>
-    <Menu as="div" class="relative">
+    <Menu v-model="selectedRegion" as="div" class="relative">
       <div>
         <MenuButton
           class="inline-flex w-44 justify-center gap-x-1.5 rounded-md bg-white dark:text-white dark:bg-neutral-800 px-3 py-4 text-sm shadow-md hover:bg-gray-50"
@@ -44,10 +44,15 @@
                   active
                     ? 'bg-neutral-100 dark:bg-neutral-700'
                     : 'text-neutral-700 dark:text-white',
-                  'block px-4 py-2 text-sm'
+                  'flex px-4 py-2 text-sm items-center'
                 ]"
+                @click="selectedRegion = item"
               >
                 {{ item }}
+                <CheckIcon
+                  v-if="item === selectedRegion"
+                  class="w-4 h-4 ml-auto"
+                />
               </a>
             </MenuItem>
           </div>
@@ -65,18 +70,31 @@
 </template>
 
 <script lang="ts" setup>
-import { MagnifyingGlassIcon, ChevronDownIcon } from '@heroicons/vue/20/solid'
+import {
+  MagnifyingGlassIcon,
+  ChevronDownIcon,
+  CheckIcon
+} from '@heroicons/vue/20/solid'
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { matchSorter } from 'match-sorter'
 import { Country } from '@/interfaces/country'
 
 const searchQuery = useDebouncedRef('', 300)
-const menuItems = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
+const selectedRegion = ref('')
+const menuItems = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
 
 const filteredCountries = computed(() => {
-  return matchSorter(countries.value!, searchQuery.value, {
-    keys: ['name.common']
-  })
+  if (searchQuery.value)
+    return matchSorter(countries.value!, searchQuery.value, {
+      keys: ['name.common']
+    })
+
+  if (selectedRegion.value)
+    return countries.value!.filter(
+      (country) => country.region === selectedRegion.value
+    )
+
+  return countries.value
 })
 
 const { data: countries } = await useFetch<Country[]>(
