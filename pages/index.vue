@@ -70,7 +70,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { matchSorter } from 'match-sorter'
 import { Country } from '@/interfaces/country'
 
-const searchQuery = ref('')
+const searchQuery = useDebouncedRef('', 300)
 const menuItems = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
 
 const filteredCountries = computed(() => {
