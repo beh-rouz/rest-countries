@@ -5,12 +5,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    environment:
-      - NUXT_HOST=0.0.0.0
-      - NUXT_PORT=3000
+    env_file:
+      - .env.production
     ports:
       - "3000:3000"
     volumes:
       - .:/app
     command: dumb-init node /.output/server/index.mjs
-    
