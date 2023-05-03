@@ -1,42 +1,24 @@
-# Nuxt 3 Minimal Starter
+# Rest Coutries
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This challange is based on [these descriptions](https://alibaba-rest-countries.vercel.app/).
 
-## Setup
+## Demo
+Here is the static version of the app deployed on netlify: [https://rest-countries-nuxt.netlify.app/](https://rest-countries-nuxt.netlify.app/)
 
-Make sure to install the dependencies:
+## Run Universal
+```bash
+docker-compose up
+```
+
+## Run Local
+
+Make sure to install the dependencies. I suggest you use pnpm for better performance:
 
 ```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
 # pnpm
 pnpm install
+
+# Run dev server
+pnpm run dev
 ```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+The development server is on `http://localhost:3000`
